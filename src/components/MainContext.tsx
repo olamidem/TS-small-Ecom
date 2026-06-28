@@ -103,11 +103,14 @@ const MainContext = () => {
       <div className="mv-5">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div className="relative mb-5 mt-5">
-            <button className="border px-4 py-2 rounded-full flex items-center">
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="border px-4 py-2 rounded-full flex items-center"
+            >
               <Tally3 className="mr-2" />
               {filter === "all"
                 ? "Filter"
-                : filter.charAt(0).toLowerCase() + filter.slice(0)}
+                : filter.charAt(0).toLowerCase() + filter.slice(1)}
             </button>
             {dropdownOpen && (
               <div className="absolute bg-white border border-gray-300 mt-2 w-full sm:w-40">
