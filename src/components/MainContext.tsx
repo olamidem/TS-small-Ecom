@@ -99,7 +99,7 @@ const MainContext = () => {
      return buttons;
    };
   return (
-    <section className="xl:w-220 lg:w-220 sm:w-160 xs:w-80 p-5">
+    <section className="xl:w-220 lg:w-220 sm:w-160 xs:w-80 p-5 mr-40">
       <div className="mv-5">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div className="relative mb-5 mt-5">
