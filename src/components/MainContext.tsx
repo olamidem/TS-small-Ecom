@@ -78,14 +78,26 @@ const MainContext = () => {
     }
   };
     
-    const getPaginationButton = () => {
-        const button: number[] = []
-        let startPage = Math.max(1, currentPage -2)
-        let endPage = Math.min(1, currentPage + 2)
+   const getPaginationButton = () => {
+     const buttons: number[] = [];
 
-        
-        
-    }
+     let startPage = Math.max(1, currentPage - 2);
+     let endPage = Math.min(totalPages, currentPage + 2);
+
+     if (currentPage <= 3) {
+       endPage = Math.min(totalPages, 5);
+     }
+
+     if (currentPage >= totalPages - 2) {
+       startPage = Math.max(1, totalPages - 4);
+     }
+     // 4. Fill up our button array
+     for (let page = startPage; page <= endPage; page++) {
+       buttons.push(page);
+     }
+
+     return buttons;
+   };
   return (
     <section className="xl:w-220 lg:w-220 sm:w-160 xs:w-80 p-5">
       <div className="mv-5">
@@ -145,11 +157,21 @@ const MainContext = () => {
             Previous
           </button>
 
-                  {/* 1,2,3,4,5, */}
-                  <div className="flex flex-wrap justify-center">
-                      {/* Pagination Button */}
-
-                  </div>
+          {/* 1,2,3,4,5, */}
+          <div className="flex flex-wrap justify-center">
+            {/* Pagination Button */}
+            {getPaginationButton().map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`border px-4 py-2 mx-1 rounded-full ${
+                  page === currentPage ? "bg-black text-white" : ""
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
           {/* Next Button */}
           <button
             onClick={() => handlePageChange(currentPage + 1)}
